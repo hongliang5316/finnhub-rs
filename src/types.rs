@@ -1,8 +1,8 @@
 #![allow(non_snake_case, missing_docs)]
 
 use serde_derive::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 use strum_macros::Display;
-use std::collections::{BTreeMap};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SymbolLookup {
@@ -120,25 +120,25 @@ pub struct Series {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Annual {
-    pub cashRatio: Vec<PeriodPlusV>,
-    pub currentRatio: Vec<PeriodPlusV>,
-    pub ebitPerShare: Vec<PeriodPlusV>,
-    pub eps: Vec<PeriodPlusV>,
-    pub grossMargin: Vec<PeriodPlusV>,
-    pub longtermDebtTotalAsset: Vec<PeriodPlusV>,
-    pub longtermDebtTotalCapital: Vec<PeriodPlusV>,
-    pub longtermDebtTotalEquity: Vec<PeriodPlusV>,
-    pub netDebtToTotalCapital: Vec<PeriodPlusV>,
-    pub netDebtToTotalEquity: Vec<PeriodPlusV>,
-    pub netMargin: Vec<PeriodPlusV>,
-    pub operatingMargin: Vec<PeriodPlusV>,
-    pub pretaxMargin: Vec<PeriodPlusV>,
-    pub salesPerShare: Vec<PeriodPlusV>,
-    pub sgaToSale: Vec<PeriodPlusV>,
-    pub totalDebtToEquity: Vec<PeriodPlusV>,
-    pub totalDebtToTotalAsset: Vec<PeriodPlusV>,
-    pub totalDebtToTotalCapital: Vec<PeriodPlusV>,
-    pub totalRatio: Vec<PeriodPlusV>,
+    pub cashRatio: Option<Vec<PeriodPlusV>>,
+    pub currentRatio: Option<Vec<PeriodPlusV>>,
+    pub ebitPerShare: Option<Vec<PeriodPlusV>>,
+    pub eps: Option<Vec<PeriodPlusV>>,
+    pub grossMargin: Option<Vec<PeriodPlusV>>,
+    pub longtermDebtTotalAsset: Option<Vec<PeriodPlusV>>,
+    pub longtermDebtTotalCapital: Option<Vec<PeriodPlusV>>,
+    pub longtermDebtTotalEquity: Option<Vec<PeriodPlusV>>,
+    pub netDebtToTotalCapital: Option<Vec<PeriodPlusV>>,
+    pub netDebtToTotalEquity: Option<Vec<PeriodPlusV>>,
+    pub netMargin: Option<Vec<PeriodPlusV>>,
+    pub operatingMargin: Option<Vec<PeriodPlusV>>,
+    pub pretaxMargin: Option<Vec<PeriodPlusV>>,
+    pub salesPerShare: Option<Vec<PeriodPlusV>>,
+    pub sgaToSale: Option<Vec<PeriodPlusV>>,
+    pub totalDebtToEquity: Option<Vec<PeriodPlusV>>,
+    pub totalDebtToTotalAsset: Option<Vec<PeriodPlusV>>,
+    pub totalDebtToTotalCapital: Option<Vec<PeriodPlusV>>,
+    pub totalRatio: Option<Vec<PeriodPlusV>>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -325,11 +325,10 @@ pub enum ProfileToParam {
     CUSIP,
 }
 
-
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ForexRates {
     pub base: String,
-    #[serde(flatten,deserialize_with = "super::utils::extract_conversion_pairs")]
+    #[serde(flatten, deserialize_with = "super::utils::extract_conversion_pairs")]
     pub quote: BTreeMap<String, f64>,
 }
 
