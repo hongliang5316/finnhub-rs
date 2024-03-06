@@ -115,7 +115,7 @@ pub struct BasicFinancials {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Series {
-    pub annual: Annual,
+    pub annual: Option<Annual>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
