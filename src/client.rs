@@ -130,6 +130,27 @@ impl Client {
         ).await
     }
 
+    /// Returns candlestick/OHLCV data for the specified stock.
+    /// https://finnhub.io/docs/api/stock-candles
+    pub async fn stock_candles(
+        &self,
+        symbol: String,
+        resolution: String,
+        from: i64,
+        to: i64,
+    ) -> Result<(Candles, Url), ExitFailure> {
+        self.get::<Candles>(
+            "stock/candle",
+            &mut vec![
+                ("symbol", symbol),
+                ("resolution", resolution),
+                ("from", from.to_string()),
+                ("to", to.to_string()),
+            ],
+        )
+        .await
+    }
+
     /// Returns the rates for all forex pairs. Ideal for currency conversion
     pub async fn forex_rates(&self, base: String) -> Result<(ForexRates, Url), ExitFailure>{
         self.get::<ForexRates>(

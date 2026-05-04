@@ -333,6 +333,17 @@ pub struct ForexRates {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+pub struct Candles {
+    pub c: Vec<f64>,
+    pub h: Vec<f64>,
+    pub l: Vec<f64>,
+    pub o: Vec<f64>,
+    pub t: Vec<i64>,
+    pub v: Vec<f64>,
+    pub s: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
 pub struct ForexSymbol {
     description: String,
     #[serde(rename = "displaySymbol")]
